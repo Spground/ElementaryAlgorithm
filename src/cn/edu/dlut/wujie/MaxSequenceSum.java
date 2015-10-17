@@ -3,6 +3,7 @@ package cn.edu.dlut.wujie;
 /**
  * @author asus
  * 最大子序列
+ * 递归实现，左右分治的思想
  *
  */
 public class MaxSequenceSum {
@@ -18,6 +19,8 @@ public class MaxSequenceSum {
 	}
 	
 	public int maxSub(int[] a ,int left,int right){
+		
+	
 		if(left == right)
 			if(a[left] > 0 )
 				return a[left];
