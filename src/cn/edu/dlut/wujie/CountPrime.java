@@ -7,7 +7,8 @@ public class CountPrime {
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		
+		int count = countPrime(1000);
+		System.out.println(count);
 	}
 
 	//Count the number of prime numbers less than a non-negative number, n

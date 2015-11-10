@@ -1,7 +1,5 @@
 package cn.edu.dlut.wujie;
 
-import java.util.Random;
-
 /**
  * QuickSort
  * performence:average case:O(nlogn) wrongest case:O(n*n),  best case:O(nlogn)
