@@ -84,28 +84,21 @@ public class BullsAndCows {
      * @return
      */
     public String getHint1(String secret, String guess) {
-    	char[] secretChar, guessChar;
-    	secretChar = secret.toCharArray();
-    	guessChar = guess.toCharArray();
-    	
-    	int cntA = 0, cntB = 0;
-    	for(int i = 0; i < guessChar.length; i++){
-    		if(secretChar[i] == guessChar[i]){
-    			cntA++;
-    			secretChar[i] = '*';
-    			guessChar[i] = '*';
-    			continue;
-    		}
-    	}
-    	
-    	for(int i = 0; i < guessChar.length; i++)
-    		for(int j = 0; j < secretChar.length; j++)
-    			if(guessChar[i] == secretChar[j] && secretChar[j] != '*' && guessChar[i] != '*'){
-    				cntB++;	
-    				guessChar[i] = '*';
-    				secretChar[j] = '*';
-    			}		
-    	
-		return cntA + "A" + cntB + "B";
+	    int bulls = 0;
+	    int cows = 0;
+	    int[] numbers = new int[10];
+	    
+		for (int i = 0; i<secret.length(); i++) {
+		    int s = Character.getNumericValue(secret.charAt(i));
+		    int g = Character.getNumericValue(guess.charAt(i));
+		    if (s == g) bulls++;
+		    else {
+		        if (numbers[s] < 0) cows++;
+		        if (numbers[g] > 0) cows++;
+		        numbers[s] ++;
+		        numbers[g] --;
+		    }
+		}
+    	 return bulls + "A" + cows + "B";
     }
 }
