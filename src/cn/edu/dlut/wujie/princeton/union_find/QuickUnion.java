@@ -26,7 +26,7 @@ public class QuickUnion {
 
 }
 
-//时间复杂度 N objects problem set,  init:O(N)、find:O(N * N)、union：O(N * N)
+//时间复杂度N objects problem set,  init:O(N)、find:O(N * N)、union：O(N * N)
 //find() is slow
 class _QuickUnion {
 	
