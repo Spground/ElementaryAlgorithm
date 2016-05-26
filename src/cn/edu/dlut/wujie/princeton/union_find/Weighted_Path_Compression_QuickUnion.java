@@ -1,42 +1,42 @@
 package cn.edu.dlut.wujie.princeton.union_find;
 
-public class WeightedQuickUnion {
+public class Weighted_Path_Compression_QuickUnion {
 
 	/**
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-		// {0,1,3}、{2,4}、{5,6,7}
-		_WeightedQuickUnion wqu = new _WeightedQuickUnion(8);
-		wqu.union(0, 1);
-		wqu.union(1, 3);
+		_Weighted_Path_Compression_QuickUnion wpcqu = new _Weighted_Path_Compression_QuickUnion(8);
+		wpcqu.union(0, 1);
+		wpcqu.union(1, 3);
 
-		wqu.union(2, 4);
+		wpcqu.union(2, 4);
 
-		wqu.union(5, 6);
-		wqu.union(6, 7);
-		wqu.union(6, 1);
+		wpcqu.union(5, 6);
+		wpcqu.union(6, 7);
+		wpcqu.union(6, 1);
 
 		// 测试连通性
-		System.err.println("2 与 7 连通吗？ " + wqu.find(2, 7));
-		System.err.println("0 与 3 连通吗？ " + wqu.find(0, 3));
-		System.err.println("0 与 6 连通吗？ " + wqu.find(0, 6));
-		System.err.println("5 与 7 连通吗？ " + wqu.find(5, 7));
+		System.err.println("2 与 7 连通吗？ " + wpcqu.find(2, 7));
+		System.err.println("0 与 3 连通吗？ " + wpcqu.find(0, 3));
+		System.err.println("0 与 6 连通吗？ " + wpcqu.find(0, 6));
+		System.err.println("5 与 7 连通吗？ " + wpcqu.find(5, 7));
 		
-		System.err.println(wqu);
+		System.err.println(wpcqu);
 	}
-
+	
+	
 }
 
-//时间复杂度N objects problem set, init:O(N)、find:O(logN)、union：O(logN)
+//时间复杂度N objects problem set, init:O(N)、find:O(N * logN)、union：O(N * logN)
 //union操作时，将小树接到大树下面，这样让树不会变得很瘦高，因此find操作回溯到树root时回溯的步数就会降低
-class _WeightedQuickUnion {
+class _Weighted_Path_Compression_QuickUnion {
 
 	int id[];
 	public int size[];
 
-	public _WeightedQuickUnion(int N) {
+	public _Weighted_Path_Compression_QuickUnion(int N) {
 		// TODO Auto-generated constructor stub
 		this.id = new int[N];
 		this.size = new int[N];
@@ -52,8 +52,12 @@ class _WeightedQuickUnion {
 	 * @return
 	 */
 	private int root(int p) {
-		while (p != id[p])
+		while (p != id[p]) {
+			//路径压缩，将当前节点p的id[p]设置为爷节点的id[*]值
+			id[p] = id[id[p]];
 			p = id[p];
+		}
+			
 		return p;
 	}
 
