@@ -1,3 +1,3 @@
 #1
-This is a elementary algorithm collection.
+This is an elementary algorithm collection.
 #2
